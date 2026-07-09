@@ -1,0 +1,4 @@
+cd /Users/crissy/Projects/cristian-co-portfolio
+git add .
+git commit -m "Promote portfolio source to repo root for GitHub Pages deployment"
+git push origin main
