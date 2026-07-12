@@ -11,6 +11,8 @@ import deepfakedImage from 'figma:asset/020630d6421c3d30cf67243f54e7d90bce490e99
 import image_f1cd33ec8e9345bd0f679a276e7ecf94cd459301 from 'figma:asset/f1cd33ec8e9345bd0f679a276e7ecf94cd459301.jpg';
 import image_c1cdfa4824a7b38765f6e4dba88026489de05ef9 from 'figma:asset/c1cdfa4824a7b38765f6e4dba88026489de05ef9.png';
 import { WorkCoverPlaceholder } from '../components/WorkCoverPlaceholder';
+import coverPokey from '../../assets/case-studies/pokebattle/page-01.png';
+import coverBlunity from '../../assets/case-studies/blunity/page-01.png';
 
 type FeaturedCover = 'cla' | 'pokey' | 'nature' | 'blunit';
 
@@ -34,11 +36,11 @@ const featuredProjects: Array<
 > = [
   {
     id: 1,
-    title: 'UX Pokemon Battle Predictor',
+    title: 'PokéBattle',
     byline: 'Python database + mobile-first battle prediction UX',
     description:
       'Structured matchup logic, explainable outcomes, and interaction loops for competitive players.',
-    cover: 'pokey',
+    image: coverPokey,
     link: '/work/pokey-battle-predictors',
   },
   {
@@ -61,11 +63,11 @@ const featuredProjects: Array<
   },
   {
     id: 4,
-    title: 'Blunit Final UX Case Study',
-    byline: 'Environmentalism-focused product strategy and interaction design',
+    title: 'Blunity',
+    byline: 'Brand case study · clean water activism',
     description:
-      'Case study centered on behavior-change UX framing, systems thinking, and flow clarity.',
-    cover: 'blunit',
+      'Identity, web, and print system connecting culture and activism to grassroots water solutions.',
+    image: coverBlunity,
     link: '/work/blunit-final',
   },
   {

@@ -5,6 +5,8 @@ import image_35251037ff9722f551eca4dcb04cedb9c9c68ddb from 'figma:asset/35251037
 import image_f1cd33ec8e9345bd0f679a276e7ecf94cd459301 from 'figma:asset/f1cd33ec8e9345bd0f679a276e7ecf94cd459301.jpg';
 import image_c1cdfa4824a7b38765f6e4dba88026489de05ef9 from 'figma:asset/c1cdfa4824a7b38765f6e4dba88026489de05ef9.png';
 import image_c7723b203e235a05b5e68bab55f6be65327e4963 from 'figma:asset/c7723b203e235a05b5e68bab55f6be65327e4963.png';
+import coverPokey from '../../assets/case-studies/pokebattle/page-01.png';
+import coverBlunity from '../../assets/case-studies/blunity/page-01.png';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
@@ -32,10 +34,10 @@ type LandingProject =
 const projects: LandingProject[] = [
   {
     id: 1,
-    title: 'Pokey Battle Predictors',
+    title: 'PokéBattle',
     category: 'Product UX · Data',
     link: '/work/pokey-battle-predictors',
-    cover: 'pokey',
+    image: coverPokey,
   },
   {
     id: 2,
@@ -53,10 +55,10 @@ const projects: LandingProject[] = [
   },
   {
     id: 4,
-    title: 'Blunit Final UX Case Study',
-    category: 'UX · Environmentalism',
+    title: 'Blunity',
+    category: 'Brand · Environmentalism',
     link: '/work/blunit-final',
-    cover: 'blunit',
+    image: coverBlunity,
   },
   {
     id: 5,
