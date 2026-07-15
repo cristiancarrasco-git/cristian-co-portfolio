@@ -1,0 +1,49 @@
+/* Small progressive-enhancement styles for the static (framework-free) site.
+   The bulk of styling comes from the compiled Tailwind stylesheet
+   (assets/index-*.css). This file only adds what the vanilla JS needs. */
+
+/* Mobile menu panel injected by app.js */
+.static-mobile-menu {
+  display: none;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 1rem;
+}
+.static-mobile-menu.open {
+  display: block;
+}
+.static-mobile-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.static-mobile-menu a:hover {
+  background: #f3f4f6;
+}
+@media (min-width: 768px) {
+  .static-mobile-menu {
+    display: none !important;
+  }
+}
+
+/* Make the carousel prev/next arrows clickable (they sit over the full-area
+   slide link; raise them so the arrow controls receive the click). */
+button[aria-label="Previous slide"],
+button[aria-label="Next slide"] {
+  z-index: 20;
+}
+
+/* Status message rendered by the contact forms */
+.form-status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.form-status.success {
+  color: #16a34a;
+}
+.form-status.error {
+  color: #dc2626;
+}

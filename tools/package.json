@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-static-site-generator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Pre-renders the React SPA into a framework-free static multi-page site.",
+  "scripts": {
+    "generate": "node prerender.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.43.1"
+  }
+}

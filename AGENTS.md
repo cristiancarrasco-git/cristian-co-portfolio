@@ -15,6 +15,11 @@
 ### Lint / tests
 - There is **no lint or automated test tooling** — `package.json` only defines `dev` and `build`, and there is no `tsconfig`/ESLint/Prettier/test config. Do not expect `npm test`/`npm run lint` to exist. Use `npm run build` as the correctness check.
 
+### Static (framework-free) site build
+- `site/` is a deployable **plain HTML/CSS/JS** version of the portfolio (one real HTML file per route), generated from the React source by `tools/prerender.mjs`. It has no framework/build step at deploy time and is intended for hosts like GoDaddy. See `tools/README.md` for how to deploy and regenerate.
+- Regeneration requires a Chrome/Chromium binary (headless pre-render): `npm run build` then `cd tools && CHROME_PATH=/usr/bin/google-chrome-stable npm run generate`. Interactivity (mobile menu, carousel, landing intro splash, contact forms) is hand-written in `tools/static/app.js` / `app.css`; the React runtime is stripped from the output.
+- `site/` links are all relative, so it works from a domain root, a subfolder, or a local `python3 -m http.server`.
+
 ### Non-obvious notes
 - `vite.config.ts` defines a custom `figma:asset/*` resolver mapping to `src/assets`, and aliases `@` to `src/app`. The React and Tailwind Vite plugins are both required by Make and must not be removed.
 - Deploy: `.github/workflows/deploy-pages.yml` builds on Node 20 with `npm ci` → `npm run build` and publishes `dist/` to GitHub Pages; the custom domain is set via `CNAME` (`cristian-co.com`). The app also builds/runs fine on the Node 22 present in this environment.
