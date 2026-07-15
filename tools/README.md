@@ -26,8 +26,12 @@ site/
   static server.
 - `assets/app.js` + `assets/app.css` reimplement the interactive behavior that
   used to be React: the mobile nav menu, the "Featured UX Projects" carousel,
-  the one-time landing intro splash, and the contact/footer forms (which POST to
-  the same Supabase endpoint the React app used).
+  the one-time landing intro splash, and the contact/footer forms.
+- The contact/footer forms open a pre-filled email via `mailto:` (to
+  `cristian.carrasco@sjsu.edu`). The original site POSTed to a Supabase edge
+  function, but that project is no longer available, so the forms are now fully
+  backend-free. To use a hosted form service later, swap `buildMailto()` in
+  `tools/static/app.js` for a `fetch()` to your endpoint.
 
 ## Deploy to GoDaddy
 

@@ -95,10 +95,11 @@
   }
 
   // ---------- Contact / footer forms ----------
-  var SUPABASE_URL =
-    'https://pfiuvsujamfwyhedraeq.supabase.co/functions/v1/make-server-8d5cb2ac/contact';
-  var SUPABASE_ANON =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmaXV2c3VqYW1md3loZWRyYWVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1MTc1MjcsImV4cCI6MjA4NDA5MzUyN30.DxxeNfgJzwXTB6WMJ2iA4PMOsyrUPFkshXJqBnMz7eE';
+  // The original site POSTed to a Supabase edge function, but that project is no
+  // longer available. To keep the static site fully self-contained (no backend,
+  // no software limitation), the forms open a pre-filled email via mailto:.
+  // If a form backend is added later, replace buildMailto()/submit with a fetch.
+  var CONTACT_EMAIL = 'cristian.carrasco@sjsu.edu';
 
   function statusEl(form) {
     var el = form.querySelector('.form-status');
@@ -110,67 +111,49 @@
     return el;
   }
 
+  function buildMailto(payload, isFooter) {
+    var subject = isFooter
+      ? 'Portfolio message'
+      : 'Portfolio inquiry from ' + (payload.name || 'website visitor');
+    var lines = [];
+    if (payload.name) lines.push('Name: ' + payload.name);
+    if (payload.email) lines.push('Email: ' + payload.email);
+    lines.push('');
+    lines.push(payload.message || '');
+    return (
+      'mailto:' +
+      CONTACT_EMAIL +
+      '?subject=' +
+      encodeURIComponent(subject) +
+      '&body=' +
+      encodeURIComponent(lines.join('\n'))
+    );
+  }
+
   function initForms() {
     var forms = Array.prototype.slice.call(document.querySelectorAll('form'));
     forms.forEach(function (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        if (form.checkValidity && !form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
         var nameInput = form.querySelector('[name="name"]');
         var emailInput = form.querySelector('[name="email"]');
         var messageInput = form.querySelector('[name="message"]');
         var isFooter = !nameInput;
-        var submitBtn = form.querySelector('button[type="submit"], button:not([type])');
         var status = statusEl(form);
 
         var payload = {
-          name: nameInput ? nameInput.value : 'Footer Contact',
+          name: nameInput ? nameInput.value : '',
           email: emailInput ? emailInput.value : '',
           message: messageInput ? messageInput.value : '',
-          page: isFooter ? 'footer' : 'contact',
         };
 
-        var originalLabel = submitBtn ? submitBtn.textContent : '';
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
-        }
-        status.className = 'form-status';
-        status.textContent = '';
-
-        fetch(SUPABASE_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + SUPABASE_ANON,
-          },
-          body: JSON.stringify(payload),
-        })
-          .then(function (r) {
-            return r.json().then(function (data) {
-              return { ok: r.ok, data: data };
-            });
-          })
-          .then(function (res) {
-            if (res.ok && res.data && res.data.success) {
-              status.className = 'form-status success';
-              status.textContent = res.data.message || 'Message sent!';
-              form.reset();
-            } else {
-              status.className = 'form-status error';
-              status.textContent =
-                (res.data && res.data.error) || 'Failed to send message. Please try again.';
-            }
-          })
-          .catch(function () {
-            status.className = 'form-status error';
-            status.textContent = 'Network error. Please check your connection and try again.';
-          })
-          .finally(function () {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = originalLabel;
-            }
-          });
+        status.className = 'form-status success';
+        status.textContent = 'Opening your email app to send this message…';
+        window.location.href = buildMailto(payload, isFooter);
       });
     });
   }
