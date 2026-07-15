@@ -63,3 +63,31 @@ on-scroll animations), strips the React runtime, rewrites absolute URLs to
 relative, copies all assets, and writes the static pages into `site/`.
 Hand-written interactivity lives in `tools/static/app.js` and
 `tools/static/app.css`.
+
+## Automating deployment to GoDaddy
+
+`.github/workflows/deploy-godaddy.yml` does the whole thing on every push to
+`main`: it rebuilds `dist/`, regenerates `site/`, and uploads it to your GoDaddy
+web root over FTPS — no manual upload.
+
+One-time setup — add these repository secrets in
+**GitHub → repo Settings → Secrets and variables → Actions**
+(values come from **GoDaddy → Hosting → Settings → FTP users / cPanel**):
+
+| Secret | Example | Notes |
+|--------|---------|-------|
+| `FTP_SERVER` | `ftp.cristian-co.com` | host or IP GoDaddy shows |
+| `FTP_USERNAME` | `your-ftp-user` | |
+| `FTP_PASSWORD` | `••••••••` | |
+| `FTP_SERVER_DIR` | `/public_html/` | web root, must end with `/` |
+
+After the secrets exist, push to `main` (or run the workflow manually from the
+**Actions** tab). The upload is incremental — only changed files are transferred.
+
+If your GoDaddy plan only offers plain FTP (not FTPS), change `protocol: ftps`
+to `protocol: ftp` in the workflow.
+
+### Alternative: skip GoDaddy uploads entirely
+`main` already auto-deploys to GitHub Pages (`.github/workflows/deploy-pages.yml`).
+If you point your domain's DNS at GitHub Pages instead of GoDaddy hosting, every
+push deploys with zero upload step and free HTTPS — no FTP secrets needed.
