@@ -188,11 +188,44 @@
     setTimeout(hide, 5000);
   }
 
+  // ---------- Neutralize solid-black placeholder images ----------
+  // The original Figma Make export shipped ~15 solid-black placeholder PNGs
+  // (real exports were never provided). Rather than show harsh black boxes,
+  // turn any near-black image into a neutral placeholder. Self-healing: once a
+  // real (non-black) image is dropped in for that filename, it displays normally.
+  function neutralizeBlackImages() {
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('img'));
+    imgs.forEach(function (img) {
+      function check() {
+        try {
+          if (!img.naturalWidth) return;
+          var c = document.createElement('canvas');
+          c.width = 12;
+          c.height = 12;
+          var ctx = c.getContext('2d');
+          ctx.drawImage(img, 0, 0, 12, 12);
+          var data = ctx.getImageData(0, 0, 12, 12).data;
+          var sum = 0;
+          for (var i = 0; i < data.length; i += 4) sum += data[i] + data[i + 1] + data[i + 2];
+          if (sum / (data.length / 4) / 3 < 8) {
+            img.style.visibility = 'hidden';
+            if (img.parentElement) img.parentElement.style.background = '#eceef1';
+          }
+        } catch (e) {
+          /* cross-origin or decode issue — leave image as-is */
+        }
+      }
+      if (img.complete && img.naturalWidth) check();
+      else img.addEventListener('load', check);
+    });
+  }
+
   function init() {
     initIntro();
     initMobileMenu();
     initCarousel();
     initForms();
+    neutralizeBlackImages();
   }
 
   if (document.readyState === 'loading') {
