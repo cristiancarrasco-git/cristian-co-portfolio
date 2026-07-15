@@ -42,10 +42,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .card h2{font-size:clamp(26px,3.4vw,36px);margin-top:10px;line-height:1.1}
 .card .desc{font-size:14.5px;margin-top:12px;max-width:46ch}
 .card .cta{font-family:var(--mono);font-size:12.5px;font-weight:700;margin-top:20px}
-.card .shot{min-height:240px;background-size:cover;background-position:center top}
-/* Casa Likha & Nature Conservatory mockups carry their label at the bottom —
-   anchor the crop to the bottom so the header/subheader stays visible. */
-.card.cl .shot,.card.tn .shot{background-position:center bottom}
+/* Square image area matches the square mockups; `contain` shows the whole
+   thumbnail (no cropping) and stays responsive on mobile and desktop. */
+.card .shot{aspect-ratio:1/1;min-height:240px;background-size:contain;background-repeat:no-repeat;background-position:center}
 
 /* per-project skins */
 .card.pk{background:#0B1322}
