@@ -1,0 +1,80 @@
+name: Deploy static site to GoDaddy
+
+# Rebuilds the framework-free static site (site/) and uploads it to your GoDaddy
+# hosting over FTP/FTPS on every push to main. Fully hands-off — no manual upload.
+#
+# One-time setup (GitHub → repo Settings → Secrets and variables → Actions → New
+# repository secret). Get these from GoDaddy → Hosting → Settings → "FTP users" /
+# "cPanel Admin":
+#   FTP_SERVER      e.g. ftp.cristian-co.com  (or the IP GoDaddy shows)
+#   FTP_USERNAME    your FTP/cPanel user
+#   FTP_PASSWORD    that user's password
+#   FTP_SERVER_DIR  target web root, e.g. /public_html/   (must end with /)
+#
+# Then push to main (or run this workflow manually from the Actions tab).
+
+on:
+  push:
+    branches: ["main"]
+    # Only redeploy when something that affects the site changes.
+    paths:
+      - "src/**"
+      - "public/**"
+      - "index.html"
+      - "vite.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - "tools/**"
+      - "site/**"
+      - ".github/workflows/deploy-godaddy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: "godaddy-deploy"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Build (dist/)
+        run: npm run build
+
+      - name: Install generator dependencies
+        run: npm ci
+        working-directory: tools
+
+      - name: Setup Chrome (for pre-rendering)
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Generate static site (site/)
+        run: npm run generate
+        working-directory: tools
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+
+      - name: Deploy to GoDaddy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./site/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Keep server-only files (if any) from being wiped:
+          dangerous-clean-slate: false
