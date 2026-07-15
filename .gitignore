@@ -28,6 +28,7 @@ Thumbs.db
 # Vite
 *.tsbuildinfo
 .cache/
+.vite/
 
 # Testing / coverage (if you add later)
 coverage/
