@@ -27,11 +27,25 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install app dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build (dist/)
         run: npm run build
+
+      - name: Install generator dependencies
+        run: npm ci
+        working-directory: tools
+
+      - name: Setup Chrome (for pre-rendering)
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Generate framework-free static site (site/)
+        run: npm run generate
+        working-directory: tools
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -39,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./site
 
   deploy:
     environment:
