@@ -145,7 +145,9 @@ export function Services() {
     <PageWrapper>
       {/* Animated Header */}
       <div className="pt-20 md:pt-24">
-        <AnimatedHeader text="Services" />
+        <AnimatedHeader subtitle="Product, motion & graphic design — and how I work" variant="orange">
+          Services
+        </AnimatedHeader>
       </div>
 
       {/* Services Section */}
