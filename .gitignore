@@ -1,2 +1,36 @@
-# Unpacked Figma Make bundle + its dependencies (recreated by the setup/update script)
-/app/
+# Dependencies
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+*.local
+
+# Logs & debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+
+# Env & secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+Thumbs.db
+
+# Vite
+*.tsbuildinfo
+.cache/
+
+# Testing / coverage (if you add later)
+coverage/
+
+# Misc
+*.pem
