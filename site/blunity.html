@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blunity — Brand Case Study · Cristian Carrasco</title>
+<meta name="description" content="Blunity (blue + unity): brand identity for a water-equality nonprofit. DSGN 197 group case study.">
+<style>
+/* ============================================================
+   Blunity — light aquatic ripple system
+   tokens: ground #FFFFFF · panel #F1F8FC · line #D6EBF6
+           brand #2EA5DE (Simply Money Blue) · deep #0B5E8C
+           ink #13293D · muted #47637A · ripple tints #8FCBEA/#CFE9F7
+   type:   clean geometric sans, airy
+   signature: concentric ripple rings bleeding off corners
+   ============================================================ */
+:root{
+  --bg:#FFFFFF; --panel:#F1F8FC; --line:#D6EBF6;
+  --brand:#2EA5DE; --deep:#0B5E8C; --ink:#13293D; --muted:#47637A;
+  --rip1:#8FCBEA; --rip2:#CFE9F7;
+  --sans:'Avenir Next','Segoe UI',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+a{color:var(--deep)}
+a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative}
+
+.ripples{position:absolute;pointer-events:none}
+.ripples i{position:absolute;border-radius:50%;border:1.5px solid var(--brand)}
+.ripples i:nth-child(2){border-color:var(--rip1);inset:-26px}
+.ripples i:nth-child(3){border-color:var(--rip2);inset:-56px}
+.rip-tr{top:-60px;right:-40px;width:120px;height:120px}
+.rip-bl{bottom:40px;left:-70px;width:100px;height:100px}
+.ripples i:first-child{inset:0}
+
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.topbar .name{font-weight:700;color:var(--ink);text-decoration:none}
+.topbar .back{font-size:13px;text-decoration:none;color:var(--muted);letter-spacing:.05em}
+.topbar .back:hover{color:var(--deep)}
+
+.hero{padding:80px 0 56px;position:relative}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:.32em;color:var(--deep);text-transform:uppercase}
+h1{font-size:clamp(48px,8vw,84px);line-height:1;color:var(--brand);margin:12px 0 4px;letter-spacing:-.02em;font-weight:800}
+.sub{font-size:19px;font-weight:700;color:var(--ink)}
+.intent{margin-top:22px;max-width:56ch;font-style:italic;color:var(--muted);font-size:17px}
+.meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;font-size:12.5px;color:var(--muted)}
+.meta b{color:var(--deep);display:block;font-size:13px}
+
+section{padding:44px 0;position:relative}
+h2{font-size:clamp(24px,3.4vw,34px);color:var(--ink);letter-spacing:-.01em}
+.kicker{font-weight:700;font-size:12px;letter-spacing:.28em;color:var(--brand);text-transform:uppercase;margin-bottom:6px}
+section p{max-width:66ch;color:var(--muted);margin-top:14px}
+section p strong{color:var(--ink)}
+
+.figure{margin:28px 0}
+.figure img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(46,110,150,.12)}
+.figure figcaption{font-size:12.5px;color:var(--muted);margin-top:10px;font-style:italic}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+.statband{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:760px){.statband{grid-template-columns:1fr}}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.stat .n{font-size:38px;font-weight:800;color:var(--deep)}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+
+.quote{background:var(--deep);color:#fff;border-radius:16px;padding:34px 36px;margin-top:26px;max-width:820px}
+.quote p{color:#fff;font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.35;max-width:none;margin:0}
+.quote .who{color:#C9E6F5;font-size:12.5px;font-style:italic;margin-top:12px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:6px 16px;font-size:13px}
+.chip.win{background:var(--deep);border-color:var(--deep);color:#fff;font-weight:700}
+
+.spec{display:flex;gap:14px;align-items:center;margin-top:18px}
+.spec .dot{width:44px;height:44px;border-radius:50%;flex-shrink:0;border:1px solid var(--line)}
+.spec b{display:block;color:var(--ink)}
+.spec span{font-size:12.5px;color:var(--muted)}
+
+.footnav{border-top:1px solid var(--line);margin-top:44px}
+.footnav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:28px;padding-bottom:36px;gap:16px;flex-wrap:wrap}
+.footnav a{font-size:13.5px;text-decoration:none;color:var(--ink);font-weight:600}
+.footnav a span{color:var(--brand)}
+.footnav .credit{font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav class="topbar"><div class="wrap">
+  <a class="name" href="index.html">Cristian Carrasco</a>
+  <a class="back" href="index.html">← All work</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="ripples rip-tr" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="eyebrow">Brand Case Study · DSGN 197 · Group 3</div>
+  <h1>Blunity</h1>
+  <div class="sub">Blue + Unity — providing clean water for all.</div>
+  <p class="intent">“How can we connect culture and activism within humanity to improve water conditions for those who need it?”</p>
+  <div class="meta">
+    <div><b>Role</b>Facilitator · identity, web</div>
+    <div><b>Team</b>Cristian · Emily · Azlyn · Anjali · Izzy</div>
+    <div><b>Year</b>Fall 2024 · BA Senior Project</div>
+  </div>
+  <figure style="margin:34px 0 0"><img src="assets/blunity/cover.jpg" alt="Blunity brand identity cover — blue ripple wordmark" loading="eager" style="width:100%;display:block;border-radius:12px"></figure>
+</div></header>
+
+<main class="wrap">
+
+  <section>
+    <div class="kicker">01 · The problem</div>
+    <h2>Water inequality is a human crisis</h2>
+    <div class="statband">
+      <div class="stat"><div class="n">2.1B</div><div class="l">people still lack access to clean drinking water</div></div>
+      <div class="stat"><div class="n">2B+</div><div class="l">live in water-stressed countries (2021)</div></div>
+      <div class="stat"><div class="n">60%</div><div class="l">of irrigated agriculture faces extreme water stress</div></div>
+    </div>
+    <p>Climate change compounds everything: floods push sewage into purification systems, droughts starve communities of supply. The insight that shaped the brand: <strong>water is a global issue, but the solutions can be local</strong> — the gap isn't awareness, it's connection.</p>
+  </section>
+
+  <section>
+    <div class="kicker">02 · The intention</div>
+    <h2>Five callings, one question</h2>
+    <div class="quote">
+      <p>How can we connect culture and activism within humanity to improve water conditions for those who need it?</p>
+      <div class="who">Group calling intention — refined with our professor</div>
+    </div>
+    <p>Culture is the doorway; activism is the path. Our research anchored the brand in water's cultural weight — Hindu rivers as deities, Vietnamese water puppetry and creation myths, Meso-American water as sacred agriculture — alongside the sharpest access crises those same communities face.</p>
+    <figure class="figure">
+      <img src="assets/blunity/cmap.jpg" alt="Blunity concept map connecting humanity, culture, climate change and effects" loading="lazy">
+      <figcaption>The concept map: humanity at the center, culture and effects branching out.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="ripples rip-bl" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="kicker">03 · Finding the name</div>
+    <h2>Fourteen names, hundreds of marks</h2>
+    <div class="chips">
+      <span class="chip">Water Reflects</span><span class="chip">Aquarity</span><span class="chip">Hydrify</span>
+      <span class="chip">The Blue Collective</span><span class="chip">BluePulse</span><span class="chip">Aquanect</span>
+      <span class="chip">Aqualume</span><span class="chip">Oshun</span><span class="chip">Henosis</span>
+      <span class="chip win">Blunity ✓</span>
+    </div>
+    <p><strong>Blue + unity</strong> — the mission is the name: people, gathered around water. Every member sketched marks by hand before anything went digital, hunting for the moment the two words read as one shape. The winning wordmark lets a ripple form the “un.”</p>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0">
+        <img src="assets/blunity/sketches.jpg" alt="Hand-drawn Blunity logo sketch explorations including water rings concept" loading="lazy">
+        <figcaption>Sketch explorations — “water rings.”</figcaption>
+      </figure>
+      <figure class="figure" style="margin:0;display:flex;flex-direction:column;justify-content:center;background:var(--panel);border-radius:12px;border:1px solid var(--line);padding:24px">
+        <img src="assets/blunity/brandmark.png" alt="Final Blunity wordmark — the ripple forms the letters u and n" style="border:none;box-shadow:none" loading="lazy">
+        <figcaption style="text-align:center">The final mark.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">04 · The identity</div>
+    <h2>One blue, one voice</h2>
+    <div class="spec"><span class="dot" style="background:#2EA5DE"></span><div><b>Simply Money Blue</b><span>HEX 2EA5DE · CMYK 70:18:0:0 · RGB 46:165:222</span></div></div>
+    <div class="spec"><span class="dot" style="background:#ADADAD"></span><div><b>32% Black</b><span>the quiet counterweight to the blue</span></div></div>
+    <div class="spec"><span class="dot" style="background:#13293D"></span><div><b>Cabinet Grotesk Bold</b><span>a single confident sans, wordmark to web · 1.3″ area of isolation</span></div></div>
+    <figure class="figure">
+      <img src="assets/blunity/spec.jpg" alt="Brandmark specification page: color values and Cabinet Grotesk type specimens" loading="lazy">
+      <figcaption>The brandmark spec from the final project book.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="kicker">05 · The website</div>
+    <h2>From landing to action in one scroll</h2>
+    <p>Four doors, one nav — About Us, Get Involved, Contact Us, Donate — with the ask always one click away. The mission leads: <strong>“access to clean water is a basic human right.”</strong></p>
+    <div class="grid3" style="margin-top:26px">
+      <figure class="figure" style="margin:0"><img src="assets/blunity/web-landing.jpg" alt="Blunity website landing page" loading="lazy"><figcaption>Landing — Blue + Unity.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/blunity/web-about.jpg" alt="Blunity About Us page" loading="lazy"><figcaption>About — the mission.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/blunity/web-donate.jpg" alt="Blunity Donate page with preset amounts" loading="lazy"><figcaption>Donate — the ask.</figcaption></figure>
+    </div>
+    <figure class="figure">
+      <img src="assets/blunity/mockup.jpg" alt="Blunity website shown on laptop and phone mockups" loading="lazy">
+      <figcaption>Responsive, laptop to phone.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="kicker">06 · The ripple story</div>
+    <h2>How one gallery becomes clean water</h2>
+    <p><strong>Gallery → Connecting → Activists → Grassroots organizations → Life.</strong> The gallery bridges culture and water through stories; shared experience turns visitors into participants; awareness becomes advocacy; Blunity routes that energy to organizations building long-term local water solutions — and better water means stronger communities and opportunity for the next generation.</p>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0"><img src="assets/blunity/ripple.jpg" alt="Ripple story diagram showing concentric stages from gallery to life" loading="lazy"><figcaption>The ripple story.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/blunity/artifact.jpg" alt="Blunity wishing well artifact design" loading="lazy"><figcaption>The wishing-well artifact — connecting community through culture.</figcaption></figure>
+    </div>
+    <figure class="figure">
+      <img src="assets/blunity/cover.jpg" alt="Blunity project book cover" loading="lazy">
+      <figcaption>The project book cover.</figcaption>
+    </figure>
+  </section>
+
+</main>
+
+<footer class="footnav"><div class="wrap">
+  <a href="pokebattle.html">← Previous — PokéBattle</a>
+  <span class="credit">DSGN 197 · BA Senior Project · Group 3</span>
+  <a href="casa-likha.html">Next project <span>— Casa Likha Architects →</span></a>
+</div></footer>
+
+<script>
+/* Hide figures whose screenshot isn't available yet, so no broken-image icons show. */
+(function(){function hide(im){var f=im.closest('figure')||im.parentElement||im;f.style.display='none';}
+document.querySelectorAll('img').forEach(function(im){if(im.complete&&im.naturalWidth===0){hide(im);}im.addEventListener('error',function(){hide(im);});});})();
+</script>
+</body>
+</html>
