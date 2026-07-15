@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consider Change — Campaign Case Study · Cristian Carrasco</title>
+<meta name="description" content="A five-project campaign for The Nature Conservancy on the environmental cost of data infrastructure. Student work by Cristian Carrasco.">
+<style>
+/* ============================================================
+   Consider Change — bold campaign system
+   tokens: forest #16341C · panel #224E2C · lime #5ABF48 (+ ink #0E2413)
+           orange #F26A1B (species) · blue #2B4BE0 (water)
+           text #FFFFFF · body #CFE0CB · quiet #9FBD9C
+   type:   heavy grotesque sans, tight, stat-first
+   signature: lime banner bars with dark outlines (from the brochure)
+   ============================================================ */
+:root{
+  --bg:#16341C; --panel:#224E2C; --lime:#5ABF48; --ink:#0E2413;
+  --orange:#F26A1B; --blue:#2B4BE0;
+  --text:#FFFFFF; --body:#CFE0CB; --quiet:#9FBD9C;
+  --sans:'Helvetica Neue','Arial Black',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
+a{color:var(--lime)}
+a:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+.topbar{position:sticky;top:0;z-index:10;background:rgba(22,52,28,.94);backdrop-filter:blur(6px);border-bottom:1px solid #2C5A34}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.topbar .name{font-weight:800;color:var(--text);text-decoration:none}
+.topbar .back{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--quiet)}
+.topbar .back:hover{color:var(--lime)}
+
+.banner{display:inline-block;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:8px;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px}
+
+.hero{padding:72px 0 52px}
+h1{font-weight:900;font-size:clamp(46px,8vw,86px);line-height:.98;letter-spacing:-.02em;margin:22px 0 12px}
+.thesis{max-width:62ch;color:var(--body);font-size:17px;margin-top:14px}
+.meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:var(--quiet)}
+.meta b{display:block;color:var(--lime);font-size:13px}
+
+/* poster shelf */
+.shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+@media(max-width:720px){.shelf{grid-template-columns:1fr}}
+.shelf figure{margin:0}
+.shelf img{width:100%;display:block;border-radius:6px}
+.shelf .b-o img{border:3px solid var(--orange)} .shelf .b-g img{border:3px solid var(--lime)} .shelf .b-b img{border:3px solid #6E86FF}
+.shelf figcaption{font-size:11.5px;font-weight:700;color:var(--quiet);margin-top:8px;letter-spacing:.06em;text-transform:uppercase}
+
+section{padding:46px 0}
+h2{font-weight:900;font-size:clamp(26px,3.8vw,38px);letter-spacing:-.01em;margin-top:18px}
+section p{max-width:66ch;color:var(--body);margin-top:14px}
+section p strong{color:var(--text)}
+
+.figure{margin:28px 0}
+.figure img{width:100%;display:block;border-radius:6px;border:2px solid #2C5A34}
+.figure figcaption{font-size:12px;font-weight:700;color:var(--quiet);margin-top:9px;letter-spacing:.04em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* five-project spine */
+.spine{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+@media(max-width:860px){.spine{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.spine{grid-template-columns:1fr}}
+.spine .pj{background:var(--panel);border:1.5px solid var(--lime);border-radius:10px;padding:14px}
+.spine .pj .n{font-weight:900;font-size:20px;color:var(--lime)}
+.spine .pj h4{font-weight:800;font-size:13.5px;margin-top:4px}
+.spine .pj p{font-size:11px;color:var(--quiet);margin-top:4px;max-width:none}
+
+/* big stat callouts */
+.bigstat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:760px){.bigstat{grid-template-columns:1fr}}
+.bs{background:var(--panel);border-radius:10px;padding:20px;border-top:6px solid var(--lime)}
+.bs.o{border-top-color:var(--orange)} .bs.b{border-top-color:#6E86FF}
+.bs .n{font-weight:900;font-size:34px}
+.bs .l{font-size:12px;color:var(--quiet);margin-top:4px;font-weight:700}
+
+/* mission list */
+.mission li{list-style:none;padding:12px 0;border-bottom:1px solid #2C5A34;color:var(--body);font-size:15px;max-width:66ch}
+.mission li b{color:var(--text);display:block;font-size:15.5px}
+.mission{margin-top:16px;padding:0}
+
+.footnav{border-top:1px solid #2C5A34;margin-top:40px}
+.footnav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:28px;padding-bottom:36px;gap:16px;flex-wrap:wrap}
+.footnav a{font-size:13px;font-weight:700;text-decoration:none;color:var(--text)}
+.footnav a span{color:var(--lime)}
+.footnav .credit{font-size:11px;color:var(--quiet);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="topbar"><div class="wrap">
+  <a class="name" href="index.html">Cristian Carrasco</a>
+  <a class="back" href="index.html">← All work</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="banner">The Nature Conservancy × DSGD 104</span>
+  <h1>Consider<br>Change</h1>
+  <p class="thesis">One client, one message, five mediums — a semester-long campaign on the environmental cost of data infrastructure, escalating from a hand-drawn taxonomy to a freeway underpass.</p>
+  <div class="meta">
+    <div><b>Role</b>Research, design &amp; 3D — solo</div>
+    <div><b>Course</b>SJSU DSGD 104 · Spring 2026</div>
+    <div><b>Note</b>Student work — not affiliated with TNC</div>
+  </div>
+  <div class="shelf">
+    <figure class="b-o"><img src="assets/tnc/poster-species.jpg" alt="64% of Species poster in campaign orange" loading="eager"><figcaption>64% of species — Audubon</figcaption></figure>
+    <figure class="b-g"><img src="assets/tnc/poster-forests.jpg" alt="20% of Forests poster in forest green" loading="lazy"><figcaption>20% of forests — Forests.org</figcaption></figure>
+    <figure class="b-b"><img src="assets/tnc/poster-water.jpg" alt="150 Billion gallons poster in saturated blue" loading="lazy"><figcaption>150 billion gallons — EPRI</figcaption></figure>
+  </div>
+  <figure style="margin:34px 0 0"><img src="assets/tnc/render-final.jpg" alt="Consider Change — bus-shelter poster mockup for The Nature Conservancy" loading="eager" style="width:100%;display:block;border-radius:12px"></figure>
+</div></header>
+
+<main class="wrap">
+
+  <section>
+    <span class="banner">01 / The series</span>
+    <h2>Five projects, one campaign spine</h2>
+    <p>One voice across all five: <strong>a hard stat leads, plain language explains, Nature.org closes</strong> — the same hierarchy from a four-inch fold to a freeway underpass. One visual system: TNC green, halftone photo collage, heavy grotesque type. And escalating dimensionality: 2D map → poster → folded object → 3D space → motion.</p>
+    <div class="spine">
+      <div class="pj"><div class="n">P1</div><h4>Content Map</h4><p>Systems in Nature — the research taxonomy</p></div>
+      <div class="pj"><div class="n">P2</div><h4>Posters</h4><p>Consider Change — a three-stat series</p></div>
+      <div class="pj"><div class="n">P3</div><h4>Brochure</h4><p>The Cost of Data Structure — accordion fold</p></div>
+      <div class="pj"><div class="n">P4</div><h4>Dimensional Sign</h4><p>Nature.org underpass installation</p></div>
+      <div class="pj"><div class="n">P5</div><h4>Motion</h4><p>Storyboards &amp; animated graphic</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="banner">02 / Project 1</span>
+    <h2>Systems in Nature</h2>
+    <p>Before any poster, a full taxonomy: Kingdom Animalia, organic cycles, the four spheres, ecophysiology, adaptation. Type size ranks concepts, hue groups systems, and hand-drawn branch lines tie 100+ terms into one readable network — <strong>the campaign's knowledge base</strong>. Adaptation, energy transfer, and human pressure become the stats every later project spends.</p>
+    <figure class="figure">
+      <img src="assets/tnc/cmap.jpg" alt="Systems in Nature content map: hand-built taxonomy of the animal kingdom, spheres and cycles" loading="lazy">
+      <figcaption>The content map — research before rhetoric.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <span class="banner">03 / Project 2</span>
+    <h2>Three stats, three ecosystems</h2>
+    <div class="bigstat">
+      <div class="bs o"><div class="n">64%</div><div class="l">OF NORTH AMERICAN SPECIES HIGHLY VULNERABLE TO EXTINCTION</div></div>
+      <div class="bs"><div class="n">20%</div><div class="l">OF NA FORESTS PERMANENTLY CLEARED SINCE 2001</div></div>
+      <div class="bs b"><div class="n">150B</div><div class="l">GALLONS OF WATER USED DAILY IN THERMOELECTRIC PLANTS</div></div>
+    </div>
+    <p>Printed at <strong>22×28 inches</strong> and built for the street: white grotesque on saturated fields survives glare, motion, and distance — the stat reads before the bus leaves. "Consider Change" is the hinge on every poster, color codes the crisis (orange / green / blue), and every number carries its source in the footer.</p>
+    <figure class="figure">
+      <img src="assets/tnc/shelter.jpg" alt="20% of Forests poster placed in a bus shelter at dusk" loading="lazy">
+      <figcaption>In the wild — the poster meets its audience mid-commute.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <span class="banner">04 / Project 3</span>
+    <h2>The Cost of Data Structure</h2>
+    <p>An accordion that argues in folds. The outside pairs four tech-hub cities with their local stakes — San Francisco, Dallas, D.C., New York, each landmark in halftone collage. The inside opens into the payoff: a U.S. data-center grid with MW-scaled chips, hub markers, and a 44/44/11 energy split — <strong>4.4% of national electricity</strong>. The reader controls the reveal; the fold is the narrative.</p>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0"><img src="assets/tnc/spread-cities.jpg" alt="Brochure outside spread: four city panels in halftone collage" loading="lazy"><figcaption>Outside: city by city stakes.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/tnc/spread-map.jpg" alt="Brochure inside spread: U.S. data-center infrastructure map" loading="lazy"><figcaption>Inside: the grid, mapped.</figcaption></figure>
+    </div>
+    <div class="grid3" style="margin-top:22px">
+      <figure class="figure" style="margin:0"><img src="assets/tnc/brochure-half.jpg" alt="Printed brochure half-open showing city panels in sequence" loading="lazy"><figcaption>Half-open: cities in sequence.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/tnc/brochure-standing.jpg" alt="Printed accordion brochure standing in a zig-zag" loading="lazy"><figcaption>Standing: the zig-zag spine.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/tnc/brochure-open.jpg" alt="Brochure fully open revealing the full map" loading="lazy"><figcaption>Fully open: the map revealed.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <span class="banner">05 / Project 4</span>
+    <h2>A message the freeway can't ignore</h2>
+    <p>Site: the underpass at <strong>Emma Prusch Farm Park, San Jose</strong> — highlighting underconsidered infrastructure in underconsidered neighborhoods.</p>
+    <ul class="mission">
+      <li><b>Create space for play</b>Respect the relationship between everyday life, nature, and technology.</li>
+      <li><b>Address the local community</b>Claim Eastside San Jose as part of Silicon Valley's tech bubble — not outside it.</li>
+      <li><b>Sustainability first</b>The installation is non-invasive to the local environment by design.</li>
+    </ul>
+    <figure class="figure">
+      <img src="assets/tnc/site.jpg" alt="Ideation and location: underpass precedent and Emma Prusch Park aerial" loading="lazy">
+      <figcaption>Ideation &amp; location — illuminated-underpass precedent, Emma Prusch Park aerial.</figcaption>
+    </figure>
+    <div class="grid2" style="margin-top:22px">
+      <figure class="figure" style="margin:0"><img src="assets/tnc/render-massing.jpg" alt="Greyscale massing study of the underpass installation" loading="lazy"><figcaption>Greyscale massing study.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/tnc/tree-study.jpg" alt="Cube-canopy tree study with translucent seasonal cubes" loading="lazy"><figcaption>Tree study — pixels growing back into nature.</figcaption></figure>
+    </div>
+    <figure class="figure">
+      <img src="assets/tnc/render-final.jpg" alt="Final render: cube-canopy trees, neon message 'We have the power to light up the world', NATURE.ORG letters at human scale" loading="lazy">
+      <figcaption>Final — "We have the power to light up the world," NATURE.ORG at human scale.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <span class="banner">Takeaway</span>
+    <h2>Same message. Every scale.</h2>
+    <p>From a hand-drawn taxonomy to a freeway underpass, the campaign proves a system: lead with the number, ground it in place, close with Nature.org — and let each medium do what only it can.</p>
+  </section>
+
+</main>
+
+<footer class="footnav"><div class="wrap">
+  <a href="casa-likha.html">← Previous — Casa Likha</a>
+  <span class="credit">Student campaign · not affiliated with The Nature Conservancy</span>
+  <a href="pokebattle.html">Next project <span>— Pokémon Battle Strat →</span></a>
+</div></footer>
+
+<script>
+/* Hide figures whose screenshot isn't available yet, so no broken-image icons show. */
+(function(){function hide(im){var f=im.closest('figure')||im.parentElement||im;f.style.display='none';}
+document.querySelectorAll('img').forEach(function(im){if(im.complete&&im.naturalWidth===0){hide(im);}im.addEventListener('error',function(){hide(im);});});})();
+</script>
+</body>
+</html>

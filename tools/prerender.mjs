@@ -191,6 +191,15 @@ async function main() {
   // Copy the hand-written vanilla JS/CSS.
   await cp(join(__dirname, 'static'), join(OUT, 'assets'), { recursive: true });
 
+  // Overlay hand-authored case-study pages (index + 4 case studies + their
+  // assets). Runs after React generation so these survive regeneration; the new
+  // index.html replaces the generated landing.
+  const pagesDir = join(__dirname, 'pages');
+  if (existsSync(pagesDir)) {
+    await cp(pagesDir, OUT, { recursive: true });
+    console.log('overlaid hand-authored pages from tools/pages/');
+  }
+
   // 404 page (Apache/GoDaddy served via .htaccess).
   let notFound = await readFile(join(OUT, 'index.html'), 'utf8');
   await writeFile(join(OUT, '404.html'), notFound, 'utf8');

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Likha Architects — UI/UX Case Study · Cristian Carrasco</title>
+<meta name="description" content="The launched B2C website and print system for a boutique architecture firm. Client case study by Cristian Carrasco.">
+<style>
+/* ============================================================
+   Casa Likha Architects — warm architectural editorial
+   tokens: paper #F7F5F1 · ink #2A2C33 · sage(text) #5E7365
+           sage(fill) #8A9A8F · hairline #D8D3CA · muted #57534B
+   type:   Georgia serif display + plain sans wayfinding
+   signature: charcoal top rule, hairline drawing-set frames,
+              numbered binder footer
+   ============================================================ */
+:root{
+  --paper:#F7F5F1; --ink:#2A2C33; --sage:#5E7365; --sagefill:#8A9A8F;
+  --line:#D8D3CA; --muted:#57534B;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:'Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65}
+body::before{content:"";display:block;height:8px;background:var(--ink)}
+a{color:var(--sage)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.topbar .name{font-family:var(--serif);font-size:18px;color:var(--ink);text-decoration:none}
+.topbar .back{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.topbar .back:hover{color:var(--ink)}
+
+.hero{padding:76px 0 52px;border-bottom:1px solid var(--line)}
+.eyebrow{font-weight:700;font-size:11.5px;letter-spacing:.3em;color:var(--sage);text-transform:uppercase}
+.eyebrow::after{content:"";display:block;width:44px;height:2px;background:var(--ink);margin-top:10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,68px);line-height:1.05;margin:20px 0 10px}
+.meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:20px;font-size:12.5px;color:var(--muted)}
+.meta b{display:block;color:var(--ink);font-size:13px}
+.thesis{margin-top:24px;max-width:62ch;color:var(--muted);font-size:17px}
+
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.kicker{font-weight:700;font-size:11.5px;letter-spacing:.3em;color:var(--sage);text-transform:uppercase;margin-bottom:8px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.6vw,36px)}
+section p{max-width:66ch;color:var(--muted);margin-top:14px}
+section p strong{color:var(--ink)}
+
+.figure{margin:28px 0}
+.figure img{width:100%;display:block;border:1px solid var(--ink)}
+.figure figcaption{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* five-page IA row */
+.ia{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+@media(max-width:860px){.ia{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ia{grid-template-columns:1fr}}
+.ia .pg{border:1px solid var(--ink);background:#fff;padding:14px 16px}
+.ia .pg.dark{background:var(--ink);color:#fff}
+.ia .pg h4{font-family:var(--serif);font-weight:400;font-size:18px}
+.ia .pg p{font-size:11.5px;margin-top:6px;color:var(--muted);max-width:none}
+.ia .pg.dark p{color:#AEBDB3}
+
+/* redline revision list */
+.redline{border:1px solid var(--ink);background:#fff;margin-top:26px;max-width:760px}
+.redline h3{font-size:11.5px;letter-spacing:.24em;color:var(--sage);padding:14px 20px;border-bottom:1px solid var(--line)}
+.redline li{font-family:var(--serif);font-size:15px;padding:12px 20px;border-bottom:1px solid var(--line);list-style:none;color:var(--ink)}
+.redline li:last-child{border-bottom:none}
+.redline li::before{content:"—";color:var(--sagefill);margin-right:12px}
+.redline ul{margin:0;padding:0}
+
+.pull{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,24px);color:var(--ink);border-left:2px solid var(--sagefill);padding-left:22px;margin-top:26px;max-width:56ch;line-height:1.45}
+
+.footnav{border-top:1px solid var(--ink);margin-top:8px}
+.footnav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:26px;padding-bottom:36px;gap:16px;flex-wrap:wrap}
+.footnav a{font-size:12.5px;letter-spacing:.08em;text-decoration:none;color:var(--ink);font-weight:600}
+.footnav a span{color:var(--sage)}
+.footnav .credit{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="topbar"><div class="wrap">
+  <a class="name" href="index.html">Cristian Carrasco</a>
+  <a class="back" href="index.html">← All work</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">UI/UX Case Study · Launched B2C Website + Print</div>
+  <h1>Casa Likha Architects</h1>
+  <div class="meta">
+    <div><b>Role</b>Design &amp; build — client work</div>
+    <div><b>Client</b>Kurt A. Rodrigo, AIA, NCARB</div>
+    <div><b>Location</b>San Jose, CA · 2025–2026</div>
+  </div>
+  <p class="thesis">The public face of a boutique architecture firm — a five-page site that turns homeowners into clients, and a card system refined through the client's own redlines. Casa (Spanish: home) + Likha (Tagalog: to create); the name is the mission, and the firm needed a public face to match it.</p>
+  <figure style="margin:34px 0 0"><img src="assets/cla/home.jpg" alt="Casa Likha Architects website shown on laptop and phone" loading="eager" style="width:100%;display:block;border-radius:12px"></figure>
+</div></header>
+
+<main class="wrap">
+
+  <section>
+    <div class="kicker">01 · Client &amp; brief</div>
+    <h2>A home for "home + create"</h2>
+    <p><strong>The client:</strong> Kurt A. Rodrigo — Cal Poly Pomona B.Arch with high honors, Columbia MSAAD, licensed in California and New York, 15+ years across Bay Area, NYC and LA firms. <strong>The audience:</strong> B2C — homeowners planning bespoke homes, ADUs, and multi-generational remodels, plus small commercial and civic clients. <strong>The brief:</strong> credibility, clarity, conversion — explain an intimidating process, show the work, and make the first step feel easy.</p>
+    <figure class="figure">
+      <img src="assets/cla/photo.jpg" alt="Fenimore Road renovation — restored exterior walkway" loading="lazy">
+      <figcaption>Fenimore Road renovation — the caliber of work the site had to represent.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="kicker">02 · Structure</div>
+    <h2>Five pages, five jobs</h2>
+    <div class="ia">
+      <div class="pg"><h4>Home</h4><p>Set the tone in one scroll</p></div>
+      <div class="pg"><h4>About</h4><p>The studio &amp; the architect</p></div>
+      <div class="pg"><h4>Services</h4><p>Demystify the process</p></div>
+      <div class="pg"><h4>Projects</h4><p>Prove it with work</p></div>
+      <div class="pg dark"><h4>Contact</h4><p>Make the ask easy</p></div>
+    </div>
+    <p class="pull">Every page funnels toward Contact — the only dark box in the row, on the site and in the nav.</p>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0">
+        <img src="assets/cla/home.jpg" alt="Casa Likha homepage: charcoal nav over full-bleed interior photography" loading="lazy">
+        <figcaption>Above the fold: photography first — proof before pitch.</figcaption>
+      </figure>
+      <figure class="figure" style="margin:0">
+        <img src="assets/cla/home-lockup.jpg" alt="CLA lockup centered over project imagery on the homepage" loading="lazy">
+        <figcaption>The CLA lockup anchors each scroll break.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">03 · Services</div>
+    <h2>For a B2C client, process is the product</h2>
+    <p>Homeowners fear the unknown more than the cost. Six numbered phase cards — <strong>Establish, Investigate, Develop, Document &amp; Specify, Bidding, Construct &amp; Install</strong> — turn a black box into a walkable path. One card pattern repeated six times: photo, numbered serif title, bold kicker, short body. The repetition itself communicates order and reliability, and each card's photo is the real artifact of its phase — trace paper, redlines, spec binders, framing.</p>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0">
+        <img src="assets/cla/services-intro.jpg" alt="The Architectural Process page introduction" loading="lazy">
+        <figcaption>The Architectural Process — the conversion engine.</figcaption>
+      </figure>
+      <figure class="figure" style="margin:0">
+        <img src="assets/cla/process-cards.jpg" alt="Six numbered process phase cards with photographs" loading="lazy">
+        <figcaption>Six phases, one repeating card pattern.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">04 · Projects, trust &amp; conversion</div>
+    <h2>A portfolio that admits it's growing</h2>
+    <p>Place-named projects — San Jose I &amp; II, Los Gatos, Campbell — read instantly to a local homeowner mapping the work onto their own lot. Serif titles sit over lightened renders, gallery-quiet, and <strong>honest coming-soon tiles</strong> promise momentum without faking finished work. The About page earns the ask with the studio's why and Kurt's credentials; the Contact form keeps it to three required fields and one promise.</p>
+    <div class="grid3" style="margin-top:26px">
+      <figure class="figure" style="margin:0"><img src="assets/cla/projects.jpg" alt="Projects grid with live project tiles" loading="lazy"><figcaption>Live: Mamaroneck · Empire · San Jose I.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/cla/about.jpg" alt="About page: the studio and principal architect" loading="lazy"><figcaption>About — person, not firm wall.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/cla/contact.jpg" alt="Contact page with a three-field project inquiry form" loading="lazy"><figcaption>Contact — three fields, no interrogation.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">05 · Print &amp; iteration</div>
+    <h2>The card, redlined like a drawing set</h2>
+    <p>Kurt annotated the business-card proofs the way he'd redline a drawing — EQ centering marks, callouts, direct notes. Speaking the client's own notation made every round faster, and the final card is his brand in his language.</p>
+    <div class="redline">
+      <h3>THE REVISIONS — FROM KURT'S MARKUP</h3>
+      <ul>
+        <li>Invert: green background, white logo</li>
+        <li>Center the mark (EQ)</li>
+        <li>All caps — drop the dots</li>
+        <li>One font size down</li>
+        <li>Keep the breathing room</li>
+      </ul>
+    </div>
+    <div class="grid2" style="margin-top:26px">
+      <figure class="figure" style="margin:0"><img src="assets/cla/markup.jpg" alt="Client markup proof with EQ centering marks" loading="lazy"><figcaption>EQ marks, architect style.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/cla/markup-notes.jpg" alt="Client markup notes on the card proof" loading="lazy"><figcaption>Notes folded straight into the next round.</figcaption></figure>
+    </div>
+    <div class="grid2" style="margin-top:22px">
+      <figure class="figure" style="margin:0"><img src="assets/cla/card-front.jpg" alt="Final business card front: white CLA logo on sage green" loading="lazy"><figcaption>Final front — sage field, white mark.</figcaption></figure>
+      <figure class="figure" style="margin:0"><img src="assets/cla/card-back.jpg" alt="Final business card back: typographic contact details" loading="lazy"><figcaption>Final back — typographic, quiet.</figcaption></figure>
+    </div>
+    <p class="pull">Shipped, live, and in his pocket — one identity from first click to first handshake.</p>
+  </section>
+
+</main>
+
+<footer class="footnav"><div class="wrap">
+  <a href="blunity.html">← Previous — Blunity</a>
+  <span class="credit">Live at cl-arch.studio</span>
+  <a href="consider-change.html">Next project <span>— Consider Change →</span></a>
+</div></footer>
+
+<script>
+/* Hide figures whose screenshot isn't available yet, so no broken-image icons show. */
+(function(){function hide(im){var f=im.closest('figure')||im.parentElement||im;f.style.display='none';}
+document.querySelectorAll('img').forEach(function(im){if(im.complete&&im.naturalWidth===0){hide(im);}im.addEventListener('error',function(){hide(im);});});})();
+</script>
+</body>
+</html>

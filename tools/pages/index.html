@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristian Carrasco — Selected Work</title>
+<meta name="description" content="Selected work by Cristian Carrasco — UX/UI, brand identity, campaign design, and 3D installation.">
+<style>
+/* ============================================================
+   Index — neutral graphite wrapper; each project card carries
+   its own brand system. Designed to be merged/replaced by the
+   existing site home — the cards are self-contained <a> blocks.
+   ============================================================ */
+:root{
+  --bg:#101014; --line:#26262e; --text:#F2F2F5; --muted:#9B9BA8; --accent:#FFD23F;
+  --mono:ui-monospace,'Cascadia Code','Courier New',monospace;
+  --sans:'Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+.topbar{border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
+.topbar .name{font-weight:800;color:var(--text);text-decoration:none;letter-spacing:.02em}
+.topbar .links{font-family:var(--mono);font-size:12px}
+.topbar .links a{color:var(--muted);text-decoration:none;margin-left:18px}
+.topbar .links a:hover{color:var(--text)}
+
+.hero{padding:80px 0 40px}
+.hero .eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.3em;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.08;margin-top:14px;letter-spacing:-.01em;max-width:20ch}
+.hero p{color:var(--muted);max-width:58ch;margin-top:18px;font-size:16.5px}
+
+.cards{display:flex;flex-direction:column;gap:22px;padding:36px 0 72px}
+.card{display:grid;grid-template-columns:1.15fr 1fr;text-decoration:none;border-radius:16px;overflow:hidden;border:1px solid var(--line);transition:transform .18s ease}
+.card:hover{transform:translateY(-3px)}
+@media(max-width:760px){.card{grid-template-columns:1fr}}
+.card .info{padding:34px 36px;display:flex;flex-direction:column;justify-content:center}
+.card .tag{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.card h2{font-size:clamp(26px,3.4vw,36px);margin-top:10px;line-height:1.1}
+.card .desc{font-size:14.5px;margin-top:12px;max-width:46ch}
+.card .cta{font-family:var(--mono);font-size:12.5px;font-weight:700;margin-top:20px}
+.card .shot{min-height:240px;background-size:cover;background-position:center top}
+
+/* per-project skins */
+.card.pk{background:#0B1322}
+.card.pk .tag{color:#FFD23F}.card.pk h2{color:#E9EFFA}.card.pk .desc{color:#9FB2D4}.card.pk .cta{color:#FFD23F}
+.card.bl{background:#FFFFFF;border-color:#D6EBF6}
+.card.bl .tag{color:#0B5E8C}.card.bl h2{color:#2EA5DE}.card.bl .desc{color:#47637A}.card.bl .cta{color:#0B5E8C}
+.card.cl{background:#F7F5F1;border-color:#D8D3CA}
+.card.cl .tag{color:#5E7365}.card.cl h2{color:#2A2C33;font-family:Georgia,serif;font-weight:400}.card.cl .desc{color:#57534B}.card.cl .cta{color:#5E7365}
+.card.tn{background:#16341C}
+.card.tn .tag{color:#5ABF48}.card.tn h2{color:#FFFFFF;font-weight:900}.card.tn .desc{color:#CFE0CB}.card.tn .cta{color:#5ABF48}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:26px;padding-bottom:40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer a{color:var(--text);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="topbar"><div class="wrap">
+  <a class="name" href="index.html">Cristian Carrasco</a>
+  <div class="links">
+    <a href="pokebattle.html">PokéBattle</a>
+    <a href="blunity.html">Blunity</a>
+    <a href="casa-likha.html">Casa Likha</a>
+    <a href="consider-change.html">Consider Change</a>
+    <a href="about/">About</a>
+    <a href="contact/">Contact</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Selected Work · San Jose, CA</div>
+  <h1>Designer across UX, brand, campaign &amp; space.</h1>
+  <p>Four case studies — a data-driven battle companion, a water-equality brand, a launched architecture-firm site, and a five-medium conservation campaign. Each page below lives in its own project's visual system.</p>
+</div></header>
+
+<main class="wrap"><div class="cards">
+
+  <a class="card pk" href="pokebattle.html">
+    <div class="info">
+      <div class="tag">UX Case Study · Web App</div>
+      <h2>Pokémon Battle Strat</h2>
+      <p class="desc">Turning complex match-prediction data into battle strategies readable in under 5 seconds — team assessment cut from 3+ minutes to &lt;30s.</p>
+      <div class="cta">READ THE CASE STUDY →</div>
+    </div>
+    <div class="shot" style="background-image:url('assets/pokebattle/hero.jpg')" role="img" aria-label="PokéBattle interface screenshot"></div>
+  </a>
+
+  <a class="card bl" href="blunity.html">
+    <div class="info">
+      <div class="tag">Brand Identity · DSGN 197</div>
+      <h2>Blunity</h2>
+      <p class="desc">Blue + unity: a water-equality nonprofit brand where a ripple forms the wordmark — from group intention to full identity system.</p>
+      <div class="cta">READ THE CASE STUDY →</div>
+    </div>
+    <div class="shot" style="background-image:url('assets/blunity/cover.jpg')" role="img" aria-label="Blunity project book cover"></div>
+  </a>
+
+  <a class="card cl" href="casa-likha.html">
+    <div class="info">
+      <div class="tag">UI/UX · Launched Client Site + Print</div>
+      <h2>Casa Likha Architects</h2>
+      <p class="desc">The public face of a boutique architecture firm — five pages that turn homeowners into clients, and a card system refined through the client's own redlines.</p>
+      <div class="cta">READ THE CASE STUDY →</div>
+    </div>
+    <div class="shot" style="background-image:url('assets/cla/home.jpg')" role="img" aria-label="Casa Likha Architects homepage"></div>
+  </a>
+
+  <a class="card tn" href="consider-change.html">
+    <div class="info">
+      <div class="tag">Campaign · TNC × DSGD 104</div>
+      <h2>Consider Change</h2>
+      <p class="desc">One client, five mediums: content map, poster triptych, accordion brochure, freeway-underpass installation, and motion — same message, every scale.</p>
+      <div class="cta">READ THE CASE STUDY →</div>
+    </div>
+    <div class="shot" style="background-image:url('assets/tnc/render-final.jpg')" role="img" aria-label="Consider Change underpass render"></div>
+  </a>
+
+</div></main>
+
+<footer><div class="wrap">
+  <span>© 2026 Cristian Carrasco</span>
+  <span><a href="https://cristian-co.figma.site">cristian-co.figma.site</a></span>
+</div></footer>
+
+</body>
+</html>
